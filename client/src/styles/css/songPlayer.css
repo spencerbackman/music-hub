@@ -1,0 +1,52 @@
+.song-player {
+  width: 100%;
+  margin: 10px auto 10px auto;
+  height: 80px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}
+
+.song-artwork {
+  height: 80px;
+  width: 80px;
+  display: grid;
+}
+
+#button {
+  display: flex;
+  flex-flow: column;
+}
+
+#add-button {
+  background-color: #727272;
+  color: #121212;
+}
+
+#middle {
+  flex: 3;
+  flex-flow: column;
+}
+
+#song-timeline {
+  width: 80%;
+  height: 7px;
+  background: white;
+  margin-left: 10%;
+}
+
+#song-handle {
+  height: 7px;
+  width: 7px;
+  background: #121212;
+}
+
+.play-song {
+  width: 20px;
+  height: 30px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  margin-top: 3px;
+}
+
+/*# sourceMappingURL=songPlayer.css.map */

@@ -1,0 +1,16 @@
+$color: #E6E7E3;
+
+.nav-container {
+    border: 2px solid $color;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 20px;
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+.nav-link {
+    color: $color;
+    text-decoration: none;
+}

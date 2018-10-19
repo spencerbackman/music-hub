@@ -1,0 +1,16 @@
+.nav-container {
+  border: 2px solid #E6E7E3;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 20px;
+  margin: 0 auto;
+  max-width: 300px;
+}
+
+.nav-link {
+  color: #E6E7E3;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=nav.css.map */

@@ -4,12 +4,19 @@ import {connect} from 'react-redux';
 import play from "./images/play-button.svg";
 import {getSongs} from './redux/songs';
 import circle from './images/circle.svg';
-import './styles/css/trackplayer.css';
+import './styles/css/tracks.css';
 
 class Tracks extends React.Component {
     constructor() {
         super();
-        this.state = { loaded: false, play: 'play' };
+        this.state = {
+            loaded: false,
+            play: 'play',
+            index: [],
+            isPlaying: false,
+            currentIndex: 0,
+            currentId: ''
+        };
     };
 
     componentDidMount() {
@@ -20,20 +27,38 @@ class Tracks extends React.Component {
                 let position = (this.timeline.offsetWidth * ratio) + this.timeline.offsetLeft;
                 this.positionHandle(position);
             });
-        };
+        }
+    };
+    componentDidUpdate() {
+        this.props.tracks.map(track => {
+            if(!this.state.index.includes(track.id)) {
+                this.setState({
+                    index: [...this.state.index, track.id]
+                })
+            }
+        });
+    }
+
+    handleSubmit = (e, id) => {
+        this.props.deleteTracks(id)
     };
 
-    positionHandle = (position) => {
-        let timelineWidth = this.timeline.offsetWidth - this.handle.offsetWidth;
-        let handleLeft = position - this.timeline.offsetLeft;
-        if (handleLeft >= 0 && handleLeft <= timelineWidth) {
-            this.handle.style.marginLeft = handleLeft + "px";
-        }
-        if (handleLeft < 0) {
-            this.handle.style.marginLeft = "0px";
-        }
-        if (handleLeft > timelineWidth) {
-            this.handle.style.marginLeft = timelineWidth + "px";
+
+    handleClick = (e, id) => {
+        this.props.getSongs(id);
+        this.setState({
+            loaded: true
+        });
+        let length = this.state.index.length;
+        let index = this.state.index;
+        console.log(index);
+        for(var i = 0; i < length; i++) {
+            if(index[i] === id) {
+                this.setState({
+                    currentIndex: i,
+                    currentId: id
+                })
+            }
         }
     };
 
@@ -52,27 +77,48 @@ class Tracks extends React.Component {
         window.addEventListener('mouseup', this.mouseUp);
     };
 
+    positionHandle = (position) => {
+        let timelineWidth = this.timeline.offsetWidth - this.handle.offsetWidth;
+        let handleLeft = position - this.timeline.offsetLeft;
+        if (handleLeft >= 0 && handleLeft <= timelineWidth) {
+            this.handle.style.marginLeft = handleLeft + "px";
+        }
+        if (handleLeft < 0) {
+            this.handle.style.marginLeft = "0px";
+        }
+        if (handleLeft > timelineWidth) {
+            this.handle.style.marginLeft = timelineWidth + "px";
+        }
+    };
+
     play = () => {
-        let status = this.state.play;
-        if(status === 'play') {
-            status = 'pause';
+        if(this.state.play === 'play') {
+            if(this.state.isPlaying) {
+                this.audio.pause();
+                this.setState({isPlaying: false})
+            }
+            this.setState({play: 'pause', isPlaying: true});
             this.audio.play();
-        } else {
-            status = 'play';
+        }
+        else {
+            this.setState({play: 'play', isPlaying: false});
             this.audio.pause();
         }
-        this.setState({ play: status })
     };
 
-    handleSubmit = (e, id) => {
-        this.props.deleteTracks(id)
-    };
-
-    handleClick = (e, id) => {
-        this.props.getSongs(id);
-        this.setState({
-            loaded: true
-        })
+    next = () => {
+        let length = this.state.index.length;
+        let currentId = this.state.currentId;
+        let index = this.state.index;
+        for (var i = 0; i < length; i++) {
+            if (currentId === index[i]) {
+                return (
+                    this.setState({
+                        currentId: index[i - 1],
+                        currentIndex: i - 1
+                    }))
+            }
+        };
     };
 
     SongPlayer = () => {
@@ -81,6 +127,7 @@ class Tracks extends React.Component {
                 <div key={track.trackId} className="player">
                     <div className="container">
                         <div id="buttons" onClick={this.play}> <img className="play-button" alt="play-icon" src={play}/></div>
+                        <button id="next-button" onClick={this.next()}>Next</button>
                     </div>
                     <div className="container" id="center">
                         <p className="info">{track.trackName} <small>by</small> {track.artistName} </p>
@@ -99,7 +146,7 @@ class Tracks extends React.Component {
                 </div>
             ))
         )
-    }
+    };
 
     myTracks = () => {
         return (
@@ -107,7 +154,7 @@ class Tracks extends React.Component {
                 <div key={track.id} className="track-container">
                     <form onSubmit={e => this.handleSubmit(e, track._id)}>
                         <div className="track-display" onClick={e => this.handleClick(e, track.id)}>
-                            <img id="play-track" src={play} alt="play-icon"/>
+                            <img id="play-icon" src={play} alt="play-icon"/>
                             <div id="track-holder">
                                 <div id="track-name">{track.trackName}</div>
                                 <div id="track-info"> {track.artist}
@@ -120,10 +167,9 @@ class Tracks extends React.Component {
                 </div>
             ))
         )
-    }
+    };
 
-    render() {
-        console.log(this.props.tracks)
+    render(){
         return(
             <div>
                 <div>

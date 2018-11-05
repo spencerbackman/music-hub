@@ -3,9 +3,9 @@ const app = express();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
-const path = require('path');
+const path = require("path");
 const port = process.env.PORT || 4000;
+const secret = process.env.secret || "I'm a secret";
 
 app.use(express.static(path.join(__dirname, "client", "build")))
 
@@ -14,7 +14,8 @@ app.use(morgan('dev'));
 
 app.use('/tracks', require('../routes/tracks'));
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/tracks', { useNewUrlParser: true }, (err) => {
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/tracks', (err) => {
     if(err) console.log(err);
     console.log('connected to db');
 });

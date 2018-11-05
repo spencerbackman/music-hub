@@ -5,20 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/spencerbackman/music-app.git"
+    "start": "node server/index.js",
+    "heroku-postbuild": "cd ../client && npm install --only=dev && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/spencerbackman/music-app/issues"
-  },
-  "homepage": "https://github.com/spencerbackman/music-app#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",

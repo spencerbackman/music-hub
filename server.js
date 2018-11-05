@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
-app.use('/tracks', require('../routes/tracks'));
+app.use('/tracks', require('./routes/tracks'));
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/tracks', (err) => {

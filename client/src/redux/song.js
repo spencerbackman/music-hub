@@ -1,8 +1,14 @@
 import axios from 'axios';
 
+let config = {
+    headers: {
+        "Acess-Control-Allow-Origin": "*"
+    }
+}
+
 export function getSongById(id) {
     return dispatch => {
-        axios.get('https://itunes.apple.com/lookup?id=' + id)
+        axios.get('https://itunes.apple.com/lookup?id=' + id, config)
             .then(response => {
                 dispatch({
                     type: 'GET_SONG_BY_ID',

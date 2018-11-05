@@ -102,10 +102,6 @@ class Library extends React.Component {
         ))
     }
 
-    player = () => {
-
-    }
-
     render() {
         return (
             <div className="library-page">

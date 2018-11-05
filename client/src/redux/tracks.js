@@ -1,8 +1,14 @@
 import axios from 'axios';
 
+let config = {
+    headers: {
+        "Acess-Control-Allow-Origin": "*"
+    }
+}
+
 export function getTracks() {
     return dispatch => {
-        axios.get('/tracks').then(response => {
+        axios.get('/tracks', config).then(response => {
             dispatch({
                 type: 'GET_TRACKS',
                 tracks: response.data
@@ -15,7 +21,7 @@ export function getTracks() {
 
 export function addTrack(newTrack) {
     return dispatch => {
-        axios.post('/tracks', newTrack).then(response => {
+        axios.post('/tracks', newTrack, config).then(response => {
             dispatch(getTracks())
         }).catch(err => {
             console.log(err);
@@ -25,7 +31,7 @@ export function addTrack(newTrack) {
 
 export function deleteTracks(id) {
     return dispatch => {
-        axios.delete('/tracks/' + id).then(response => {
+        axios.delete('/tracks/' + id, config).then(response => {
         dispatch({ type: "DELETE_TRACK", id })
         }).catch(err => {
             console.log(err);

@@ -98,14 +98,3 @@ class Songsearch extends React.Component {
 }
 
 export default connect(state => state, {searchSongs, getSongById, getTracks})(Songsearch);
-
-
-
-
-
-
-
-//                    <select name="playlist" id="addSongOptions" value={this.state.playlist} onChange={this.handleChange}>
-  //                          <option selected value="allSongs">Add to all Songs</option>
-    //                        <option value="playlist">Add to Playlist</option>
-      //                  </select>

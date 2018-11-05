@@ -120,8 +120,6 @@ class LibraryPlayer extends React.Component {
     }
 
     render() {
-        console.log(this.state.index)
-        console.log(this.props)
         return (
             <div>
                 {this.props.songs.map(track => (

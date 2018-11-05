@@ -1,7 +1,7 @@
 import React from 'react';
-import Home from './Home';
-import Tracks from './Tracks';
+import Songsearch from './Songsearch';
 import Navbar from './Navbar';
+import Library from './Library';
 import { Switch, Route } from 'react-router-dom';
 import './styles/css/app.css';
 
@@ -10,8 +10,8 @@ function App() {
         <div className="app-container">
             <Navbar />
             <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/tracks" component={Tracks} />
+                <Route exact path="/" component={Songsearch}/>
+                <Route path="/playlists" component={Library} />
             </Switch>
         </div>
     )

@@ -1,28 +1,116 @@
 $color: #E6E7E3;
+$color1: #001b33;
+$color2: #f4f6f7;
+$color3: #222323;
+$color4: #404142;
 
-#search {
-    width: 200px;
-    height: 30px;
-    background-color: $color;
-    padding: 3px;
-    margin-right: 3px;
+.search-page {
+    width: 80%;
+    margin-left: 20%;
 }
 
 .search-form {
-    color: #fff;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    top: 3px;
+    position: fixed;
 }
 
-#search-container {
+#search {
+    width: 80%;
+    height: 50px;
+    background-color: $color4;
+    border: none;
+    font-size: 20px;
+    color: $color2;
+}
+
+.song-search-container {
+    margin-top: 80px;
+}
+
+.song-container {
+    width: 95%;
+    margin: auto;
+    color: $color2;
     display: flex;
     flex-flow: row;
-    justify-content: center;
+    height: 60px;
 }
 
-#search-button {
-    width: 80px;
-    height: 30px;
-    background-color: $color;
-    padding: 3px;
-    margin-left: 3px;
+.song-container:hover {
+    background-color: $color1
+}
+.song-container:hover #add-song-container{
+    display: block;
 }
 
+#song-display {
+    color: $color2;
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: row;
+    height: 50px;
+}
+
+.song-play-icon {
+    height: 15px;
+    width: 10px;
+    margin: 20px 0 0 25px;
+    justify-content: flex-start;
+}
+
+.song-info-holder {
+    display: flex;
+    flex-flow: column;
+    margin-top: 10px;
+}
+
+#song-name {
+    margin-left: 15px;
+    font-size: 18px;
+}
+
+.song-info-holder2 {
+    display: flex; 
+    flex-flow: row;
+}
+
+#song-info {
+    margin-left: 15px;
+    font-size: 14px;
+}
+
+#ball-icon {
+    height: 2px;
+    width: 2px;
+    margin: 8px 5px 0 5px;
+}
+
+#song-albumn {
+    font-size: 14px;
+}
+
+#add-song-container {
+    display: none;
+    position: absolute;
+    margin-left: 65%;
+}
+
+.phantom {
+    display: block;
+    padding: 10px;
+    height: 100px;
+    width: 100%;
+}
+
+.sticky {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 90px;
+    width: 100%;
+}

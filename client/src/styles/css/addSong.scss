@@ -1,0 +1,92 @@
+$color: #E6E7E3;
+$color1: #001b33;
+$color2: #f4f6f7;
+$color3: #222323;
+
+.select-menu select {
+    background: transparent;
+    width: 100px;
+    padding: 2px;
+    color: $color3;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    position: relative;
+}
+
+.select-menu {
+    width: 100px;
+    overflow: hidden;
+    background: no-repeat right $color3;
+    border-top: $color2 1px solid;
+    border-radius: 4px 4px 4px 4px;
+    position: relative;
+}
+
+.select-menu:before {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 3px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid $color2;
+}
+
+.playlistOptions {
+    color: $color2;
+    background-color: $color3;
+}
+
+.new-playlist-input {
+    background-color: $color3;
+    color: $color2;
+    border: none;
+}
+
+.new-playlist-input::placeholder {
+    color: $color2;
+}
+
+// .select-menu:after {
+//     content: '';
+//     position: absolute;
+//     right: 10px;
+//     top: 3px;
+//     width: 0;
+//     height: 0;
+//     border-left: 10px solid transparent;
+//     border-right: 10px solid transparent;
+//     border-top: 10px solid $color2;
+// }
+
+.select-menu select > option {
+    background: $color3;
+    color: $color2;
+}
+
+// #addSongOptions {
+//     height: 30px;
+//     width: 100px;
+//     border-radius: 0;
+//     padding-left: 10px;
+//     appearance: none;
+//     background-color: $color3;
+//     color: $color2;
+//     background-image: url('../../images/sort-down.svg');
+//     background-repeat: no-repeat;
+//     background-position: right 0;
+// }
+
+#add-song-toggle {
+    font-size: 30px;
+}
+
+#add-song-button {
+    margin-left: 20px;
+}

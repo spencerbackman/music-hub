@@ -16,7 +16,7 @@ export function getTracks() {
 export function addTrack(newTrack) {
     return dispatch => {
         axios.post('/tracks', newTrack).then(response => {
-            dispatch({type: "ADD_TRACK", newTrack})
+            dispatch(getTracks())
         }).catch(err => {
             console.log(err);
         })
@@ -38,13 +38,9 @@ const initialTracks = [];
 export default function reducer (tracks = initialTracks, action){
     switch(action.type) {
         case "GET_TRACKS":
-            return action.tracks
-        case "ADD_TRACK":
-            return {
-               tracks:  [...tracks, action.newTrack]
-            }
+            return action.tracks;
         case "DELETE_TRACK":
-            return tracks.filter(track => track._id !== action.id)
+            return tracks.filter(track => track._id !== action.id);
         default:
             return tracks
     }

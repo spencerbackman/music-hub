@@ -1,52 +1,94 @@
-$color1: #727272;
-$color2: #121212;
+$color1: #001b33;
+$color2: #f4f6f7;
+$color3: #222323;
 
 .song-player {
     width: 100%;
-    margin: 10px auto 10px auto;
     height: 80px;
+    bottom: 0;
+    position: fixed;
     display: flex;
     flex-flow: row;
-    justify-content: space-around;
-}
-.song-artwork {
-    height: 80px;
-    width: 80px;
-    display: grid;
+    background-color: $color3;
 }
 
-#button {
+.info-artwork-container {
+    display: flex;
+    flex-flow: row;
+}
+
+.song-artwork {
+    height: 60px;
+    width: 60px;
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+#song-info-container {
     display: flex;
     flex-flow: column;
+    padding: 0;
+    margin: 0;
 }
 
-#add-button {
-    background-color: $color1;
+.song-info1 {
+    margin: 15px 0 0 15px;
+    padding: 0;
     color: $color2;
+    font-size: 18px;
 }
 
-#middle {
-    flex: 3;
-    flex-flow: column;
+.song-info2 {
+    margin: 4px 0 0 15px;
+    padding: 0;
+    font-size: 14px;
+    color: #E6E7E3;
 }
 
-#song-timeline {
-    width: 80%;
-    height: 7px;
-    background: white;
-    margin-left: 10%;
+.icon-time-container {
+    display: flex; 
+    flex-direction: column;
 }
 
-#song-handle {
-    height: 7px;
-    width: 7px;
-    background: $color2;
+#icons {
+    left: 50%;
+    position: absolute;
+    margin-top: 10px;
 }
 
-.play-song {
+.song-play-button {
     width: 20px;
     height: 30px;
-    margin-left: 5px;
-    margin-bottom: 5px;
-    margin-top: 3px;
+}
+
+.song-pause-button {
+    width: 25px;
+    height: 30px;
+}
+
+.slider-time-container {
+    display: flex; 
+    flex-direction: column;
+}
+
+#slider {
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    bottom: 5px;
+}
+
+#current {
+    color: $color2;
+    position: absolute;
+    left: 25%;
+    bottom: 20px;
+}
+
+#total {
+    color: $color2;
+    margin-left: 50px;
+    position: absolute;
+    left: 69%;
+    bottom: 20px;
 }

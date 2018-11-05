@@ -1,16 +1,45 @@
 $color: #E6E7E3;
+$color1: #06080A;
+$color2: #ffffff;
+
+.side-nav {
+    margin: 0;
+    padding: 0;
+    width: 20%;
+    background-color: $color1;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: auto;
+}
+
+#nav-header {
+    color: $color2;
+    text-align: center;
+}
 
 .nav-container {
-    border: 2px solid $color;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 20px;
-    margin: 0 auto;
-    max-width: 300px;
+    list-style-type: none;
 }
 
 .nav-link {
+    display: block;
     color: $color;
     text-decoration: none;
+    padding: 20px 0 10px 0;
+}
+
+.nav-link:hover {
+    color: $color2;
+}
+
+.nav-name {
+    font-size: 25px;
+}
+
+.nav-icons {
+    height: 15px;
+    width: 15px;
+    padding-right: 10px;
 }

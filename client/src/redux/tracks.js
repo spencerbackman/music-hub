@@ -2,7 +2,7 @@ import axios from 'axios';
 
 let config = {
     headers: {
-        "Acess-Control-Allow-Origin": "*"
+        "Acess-Control-Allow-Origin": "https://mymusichub.herokuapp.com"
     }
 }
 

@@ -1,8 +1,3 @@
-$color: #E6E7E3;
-$color1: #001b33;
-$color2: #f4f6f7;
-$color3: #222323;
-
 .library-page {
     width: 80%;
     margin-left: 20%;
@@ -41,7 +36,7 @@ $color3: #222323;
 }
 
 .playlist-nav a:hover {
-    color: $color2;
+    color: #f4f6f7;
 }
 
 
@@ -51,7 +46,7 @@ $color3: #222323;
 }
   
 .playlist-display {
-    color: $color2;
+    color: #f4f6f7;
     display: flex;
     flex-direction: row;
     width: 95%;
@@ -60,7 +55,7 @@ $color3: #222323;
 }
 
 .playlist-display:hover {
-    background-color: $color1;
+    background-color: #001b33;
 }
 
 .play-button {
@@ -103,13 +98,13 @@ $color3: #222323;
 }
 
 .delete-but {
-    background-color: $color1;
-    color: $color2;
+    background-color: #001b33;
+    color: #f4f6f7;
     margin-left: 65%;
     position: absolute;
     margin-top: 20px;
     height: 20px;
-    background-color: $color3;
+    background-color: #222323;
 }
   
 .phant {

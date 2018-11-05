@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {addTrack, getTracks} from "./redux/tracks";
-import './styles/css/addSong.css';
+import './styles/addSong.css';
 
 class AddSong extends React.Component {
     constructor() {

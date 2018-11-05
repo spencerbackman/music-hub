@@ -1,7 +1,7 @@
 import React from 'react';
 import Songplayer from './Songplayer';
 import AddSong from './AddSong';
-import './styles/css/songSearch.css';
+import './styles/songSearch.css';
 import {connect} from 'react-redux';
 import {getTracks} from './redux/tracks';
 import {searchSongs} from "./redux/songs";

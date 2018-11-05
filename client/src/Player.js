@@ -1,7 +1,7 @@
 import React from 'react';
 import pause from "./images/pause-button.svg";
 import play from "./images/play-button.svg";
-import './styles/css/songPlayer.css';
+import './styles/songPlayer.css';
 
 class Player extends React.Component {
     constructor() {

@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import headphones from './images/headphones.svg';
 import search from './images/search.svg';
-import './styles/css/nav.css';
+import './styles/nav.css';
 
 class Navbar extends React.Component {
     render() {

@@ -6,7 +6,7 @@ import play from "./images/play-button.svg";
 import pause from './images/pause-button.svg';
 import prev from './images/left-arrow.svg';
 import next from './images/right-arrow.svg';
-import './styles/css/libraryplayer.css';
+import './styles/libraryPlayer.css';
 
 class LibraryPlayer extends React.Component {
     constructor() {

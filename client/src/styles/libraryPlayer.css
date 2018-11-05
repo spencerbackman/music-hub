@@ -1,14 +1,10 @@
-$color1: #001b30;
-$color2: #f4f6f7;
-$color3: #222323;
-
 .lib-player {
     width: 100%;
     height: 80px;
     position: fixed;
     display: flex;
     flex-flow: row;
-    background-color: $color3;
+    background-color: #222323;
     bottom: 0;
 }
 
@@ -29,7 +25,7 @@ $color3: #222323;
 .lib-track {
     margin: 15px 0 0 15px;
     padding: 0;
-    color: $color2;
+    color: #f4f6f7;
     font-size: 18px;
 }
 
@@ -84,14 +80,14 @@ $color3: #222323;
 }
 
 #libCurrent {
-    color: $color2;
+    color: #f4f6f7;
     position: absolute;
     left: 25%;
     bottom: 20px;
 }
 
 #libTotal {
-    color: $color2;
+    color: #f4f6f7;
     position: absolute;
     left: 72%;
     bottom: 20px;

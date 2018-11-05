@@ -1,12 +1,8 @@
-$color: #E6E7E3;
-$color1: #06080A;
-$color2: #ffffff;
-
 .side-nav {
     margin: 0;
     padding: 0;
     width: 20%;
-    background-color: $color1;
+    background-color: #06080A;
     height: 100%;
     position: fixed;
     top: 0;
@@ -15,7 +11,7 @@ $color2: #ffffff;
 }
 
 #nav-header {
-    color: $color2;
+    color: #ffffff;
     text-align: center;
 }
 
@@ -25,13 +21,13 @@ $color2: #ffffff;
 
 .nav-link {
     display: block;
-    color: $color;
+    color: #E6E7E3;
     text-decoration: none;
     padding: 20px 0 10px 0;
 }
 
 .nav-link:hover {
-    color: $color2;
+    color: #ffffff;
 }
 
 .nav-name {

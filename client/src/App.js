@@ -3,7 +3,7 @@ import Songsearch from './Songsearch';
 import Navbar from './Navbar';
 import Library from './Library';
 import { Switch, Route } from 'react-router-dom';
-import './styles/css/app.css';
+import './styles/app.css';
 
 function App() {
     return (

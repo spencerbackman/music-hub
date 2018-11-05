@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getTracks, deleteTracks} from './redux/tracks';
 import {getSongs} from './redux/songs';
-import './styles/css/library.css';
+import './styles/library.css';
 import play from "./images/play-button.svg";
 import circle from "./images/circle.svg";
 import LibraryPlayer from './LibraryPlayer';

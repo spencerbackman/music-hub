@@ -27,9 +27,8 @@ class AddSong extends React.Component {
         })
     }
     handleChange = e => {
-        const { name, value } = e.target;
         this.setState({
-            [name]: value
+            [e.target.name]: e.target.value
         })
     };
     handleSubmit = (e, track, artist, albumn, id) => {
@@ -37,7 +36,7 @@ class AddSong extends React.Component {
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
         var playlist;
-        if(this.state.playlist !== '') {
+        if(this.state.playlist.length > 0) {
             playlist = this.state.playlist
         } else {
             playlist = this.state.newPlaylist
@@ -56,6 +55,15 @@ class AddSong extends React.Component {
             isHidden: !this.state.isHidden
         })
     }
+    selectPlaylist = () => {
+        <form onSubmit={e => this.handleSubmit(e, this.props.track, this.props.artist, this.props.albumn, this.props.id)}>
+            <select name="playlist" value="" className="playlistOptions" onChange={this.handleChange}>All Songs</select>
+            {this.state.names.map(playlist => (
+                <select name="playlist" value={playlist} key={playlist} onChange={this.handleChange}>{playlist}</select>
+            ))}   
+            <input type="text" name="newPlaylist" className="new-playlist-input" placeholder="New Playlist" value={this.state.newPlaylist} onChange={this.handleChange} />     
+        </form>
+    }
 
     render() {
         return (
@@ -65,17 +73,7 @@ class AddSong extends React.Component {
                 :null}
                 <div className="select-menu">
                     {this.state.isHidden
-                        ?<form onSubmit={e => this.handleSubmit(e, this.props.track, this.props.artist, this.props.albumn, this.props.id)}>
-                            <select name="playlistSelect" id="addSongOptions" value={this.state.playlist} onChange={this.handleChange}>
-                                <option value="" className="playlistOptions">My Music</option>
-                                {this.state.names.map(name => 
-                                    <option key={name} value={name} className="playlistOptions">{name} </option>
-                                )}
-                                </select>
-                            <br/>
-                            <input name="newPlaylist" type="text" className="new-playlist-input" placeholder="New Playlist" value={this.state.newPlaylist} onChange={this.handleChange}/>                            
-                            <button value="submit" id="add-song-button">Add Song</button>
-                        </form>
+                    ? {selectPlaylist()}
                     :null}
                 </div>
                 </div>

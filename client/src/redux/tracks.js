@@ -7,13 +7,17 @@ trackAxios.interceptors.request.use(config => {
     return config;
 })
 
+function setTracks(track) {
+    return {
+        type: "SET_TRACKS",
+        track
+    }
+}
+
 export function getTracks() {
     return dispatch => {
         trackAxios.get('/tracks').then(response => {
-            dispatch({
-                type: 'GET_TRACKS',
-                tracks: response.data
-            })
+            dispatch(setTracks(response.data))
         }).catch(err => {
             console.log(err)
         })
@@ -22,7 +26,8 @@ export function getTracks() {
 
 export function addTrack(newTrack) {
     return dispatch => {
-        trackAxios.post('/tracks', newTrack).then(response => {
+        trackAxios.post('/tracks', newTrack)
+        .then(response => {
             dispatch(getTracks())
         }).catch(err => {
             console.log(err);
@@ -33,7 +38,7 @@ export function addTrack(newTrack) {
 export function deleteTracks(id) {
     return dispatch => {
         trackAxios.delete('/tracks/' + id).then(response => {
-        dispatch({ type: "DELETE_TRACK", id })
+        dispatch(getTracks())
         }).catch(err => {
             console.log(err);
         })
@@ -44,10 +49,8 @@ const initialTracks = [];
 
 export default function reducer (tracks = initialTracks, action){
     switch(action.type) {
-        case "GET_TRACKS":
+        case "SET_TRACKS":
             return action.tracks;
-        case "DELETE_TRACK":
-            return tracks.filter(track => track._id !== action.id);
         default:
             return tracks
     }

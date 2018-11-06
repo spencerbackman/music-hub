@@ -65,10 +65,10 @@ class AddSong extends React.Component {
                 <div className="select-menu">
                     {this.state.isHidden
                         ?<form onSubmit={e => this.handleSubmit(e, this.props.track, this.props.artist, this.props.albumn, this.props.id)}>
-                            <select name="playlistSelect" id="addSongOptions" value={this.state.playlist} onChange={this.handleChange}>
-                                <option value="" className="playlistOptions">My Music</option>
+                            <select name="playlist" id="addSongOptions" value={this.state.playlist} onChange={this.handleChange}>
+                                <option value="">My Music</option>
                                 {this.state.names.map(name => 
-                                    <option key={name} value={name} className="playlistOptions">{name} </option>
+                                    <option value={name}>{name} </option>
                                 )}
                             </select>
                             <br/>

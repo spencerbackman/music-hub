@@ -36,7 +36,7 @@ class AddSong extends React.Component {
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
         var playlist;
-        if(this.state.playlist.length > 0) {
+        if(this.state.playlist !== '') {
             playlist = this.state.playlist
         } else {
             playlist = this.state.newPlaylist

@@ -1,11 +1,4 @@
 import axios from 'axios';
-const songAxios = axios.create();
-
-songAxios.interceptors.request.use(config => {
-    const token = localStorage.getItem("token");
-    config.headers.Authorization = `Bearer ${token}`;
-    return config;
-})
 
 let config = {
     headers: {
@@ -16,7 +9,7 @@ let config = {
 
 export function getSongById(id) {
     return dispatch => {
-        songAxios.get('https://itunes.apple.com/lookup?id=' + id, config)
+        axios.get('https://itunes.apple.com/lookup?id=' + id, config)
             .then(response => {
                 dispatch({
                     type: 'GET_SONG_BY_ID',

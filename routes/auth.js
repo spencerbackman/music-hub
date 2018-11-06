@@ -27,7 +27,7 @@ authRouter.post("/login", (req, res) => {
             user.checkPassword(req.body.password, (err, match) => {
                 if(err) throw (err);
                 if(!match) res.status(401).send({success: false, message: "Incorrect password"});
-                const token = jwt.sign(user.toObject(), process.env.SECRET, {expiresIn: "24h"});
+                const token = jwt.sign(user.toObject(), process.env.SECRET);
                 return res.send({token: token, user: user.withoutPassword(), success: true, message: "Here's your token!"});
             })
         }

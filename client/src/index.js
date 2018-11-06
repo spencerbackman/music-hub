@@ -5,6 +5,10 @@ import { Provider } from 'react-redux';
 import store from './redux';
 import {BrowserRouter} from 'react-router-dom';
 
+store.subscribe(() => {
+    store.getState()
+})
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>

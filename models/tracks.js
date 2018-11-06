@@ -6,7 +6,12 @@ const trackSchema = new Schema({
     artist: String,
     trackName: String,
     albumn: String,
-    id: String
+    id: String,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    }
 });
 
 module.exports = mongoose.model('track', trackSchema);

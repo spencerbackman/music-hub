@@ -1,4 +1,11 @@
 import axios from 'axios';
+const songsAxios = axios.create();
+
+songsAxios.interceptors.request.use(config => {
+    const token = localStorage.getItem("token");
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+})
 
 let config = {
     headers: {
@@ -9,7 +16,7 @@ let config = {
 
 export function searchSongs(name) {
     return dispatch => {
-        axios.get('https://itunes.apple.com/search?term=' + name + '&limit=10', config)
+        songsAxios.get('https://itunes.apple.com/search?term=' + name + '&limit=10', config)
             .then(response => {
                 dispatch({
                     type: 'SEARCH_SONGS',
@@ -23,7 +30,7 @@ export function searchSongs(name) {
 
 export function getSongs(id) {
     return dispatch => {
-        axios.get('https://itunes.apple.com/lookup?id=' + id, config)
+        songsAxios.get('https://itunes.apple.com/lookup?id=' + id, config)
             .then(response => {
                 dispatch({
                     type: 'GET_SONGS',

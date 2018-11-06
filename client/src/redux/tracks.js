@@ -1,8 +1,15 @@
 import axios from 'axios';
+const trackAxios = axios.create();
+
+trackAxios.interceptors.request.use(config => {
+    const token = localStorage.getItem("token");
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+})
 
 export function getTracks() {
     return dispatch => {
-        axios.get('/tracks').then(response => {
+        trackAxios.get('/tracks').then(response => {
             dispatch({
                 type: 'GET_TRACKS',
                 tracks: response.data
@@ -15,7 +22,7 @@ export function getTracks() {
 
 export function addTrack(newTrack) {
     return dispatch => {
-        axios.post('/tracks', newTrack).then(response => {
+        trackAxios.post('/tracks', newTrack).then(response => {
             dispatch(getTracks())
         }).catch(err => {
             console.log(err);
@@ -25,7 +32,7 @@ export function addTrack(newTrack) {
 
 export function deleteTracks(id) {
     return dispatch => {
-        axios.delete('/tracks/' + id).then(response => {
+        trackAxios.delete('/tracks/' + id).then(response => {
         dispatch({ type: "DELETE_TRACK", id })
         }).catch(err => {
             console.log(err);

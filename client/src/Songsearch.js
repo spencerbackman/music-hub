@@ -42,8 +42,9 @@ class Songsearch extends React.Component {
 
     songs = () => {
         return (
-            this.props.songs.map(track => (
-                <div key={track.trackId} className="song-container">
+            this.props.songs.map(track => 
+                <div key={track.trackId} >
+                    <div className="song-container">
                     <div id="song-display" onClick={e => this.handleClick(e, track.trackId)}>
                         <img className="song-play-icon" src={play} alt="play-icon"/>
                         <div className="song-info-holder">
@@ -59,8 +60,9 @@ class Songsearch extends React.Component {
                         <AddSong key={track.trackId} id={track.trackId} track={track.trackName}
                             artist={track.artistName} albumn={track.collectionName} />
                     </div>
+                    </div>
                 </div>
-            ))
+            )
         )
     };
 

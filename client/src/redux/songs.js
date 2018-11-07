@@ -4,10 +4,8 @@ export function searchSongs(name) {
     return dispatch => {
         axios.get('https://itunes.apple.com/search?term=' + name + '&limit=10', {
             headers: {
-                'Acess-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json'
             },
-            withCredentials: true,
             credentials: 'https://mymusichub.herokuapp.com'
         })
             .then(response => {
@@ -25,10 +23,8 @@ export function getSongs(id) {
     return dispatch => {
         axios.get('https://itunes.apple.com/lookup?id=' + id + '&entity=song&limit=1', {
             headers: {
-                'Acess-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json'
             },
-            withCredentials: true,
             credentials: 'https://mymusichub.herokuapp.com'
         }).then(response => {
                 dispatch({

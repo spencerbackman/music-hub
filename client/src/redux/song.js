@@ -2,17 +2,36 @@ import axios from 'axios';
 
 export function getSongById(id) {
     return dispatch => {
-        axios.get('https://itunes.apple.com/lookup?id=' + id + '&limit=1')
-            .then(response => {
-                dispatch({
-                    type: 'GET_SONG_BY_ID',
-                    song: response.data.results
-                });
-            }).catch(err => {
+        axios({
+            method: 'get',
+            url: `https://itunes.apple.com/search?term${id}&limit=10`,
+            header: {
+                'Access-Control-Allow-Origin': 'https://mymusichub.herokuapp.com'
+            }
+        }).then(response => {
+            dispatch({
+                type: 'GET_SONG_BY_ID',
+                song: response.data.results
+            })
+        }).catch(err => {
             console.log(err)
         })
     }
 }
+
+// export function getSongById(id) {
+//     return dispatch => {
+//         axios.get('https://itunes.apple.com/lookup?id=' + id + '&limit=1')
+//             .then(response => {
+//                 dispatch({
+//                     type: 'GET_SONG_BY_ID',
+//                     song: response.data.results
+//                 });
+//             }).catch(err => {
+//             console.log(err)
+//         })
+//     }
+// }
 
 const initialState = [];
 

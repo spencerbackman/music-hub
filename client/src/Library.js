@@ -13,8 +13,9 @@ class Library extends React.Component {
         this.state = {
             playlists: [],
             selected: '',
-            clicked: false,
             allSongs: false,
+            showPlaylist: false,
+            songPlayer: false,
             current: ''
         }
     }
@@ -23,15 +24,11 @@ class Library extends React.Component {
         this.props.getTracks()
     }
 
-    componentWillUpdate() {
-        this.state.playlists.length === 0
-    }
-
     componentDidUpdate() {
         this.props.tracks.map(track => {
             if(!this.state.playlists.includes(track.name) && track.name !== "allSongs") {
                 this.setState({
-                    playlists: [...this.state.playlists, track.name]
+                    playlists: [track.name, ...this.state.playlists]
                 })
             }
         })
@@ -41,12 +38,14 @@ class Library extends React.Component {
         if(name === 'allSongs') {
             this.setState({
                 allSongs: true, 
-                selected: 'allSongs'
+                selected: 'allSongs',
+                showPlaylist: false
             })
         } else {
             this.setState({
                 allSongs: false, 
-                selected: name
+                selected: name,
+                showPlaylist: true
             })
         }
     }
@@ -56,8 +55,11 @@ class Library extends React.Component {
     };
 
     handleClick = (e, id) => {
-        this.setState({clicked: true, current: id})
-        this.props.getSongs(id)
+        if(this.state.allSongs) {
+            this.setState({clicked: true, current: id, showAll: true, songPlayer: true})
+        } else {
+            this.setState({clicked: true, current: id, showAll: false, songPlayer: true})
+        }
     }
 
     playlist = () => {
@@ -108,22 +110,20 @@ class Library extends React.Component {
                 <div className="playlist-nav">
                     <a onClick={e => this.onClick(e, 'allSongs')} className="playlist-header1" href="#allSongs"> all songs </a>
                     {this.state.playlists.map((name) => 
-                        <div key={name} onClick={e => this.onClick(e, name)}>
-                            <a className="playlist-header" href={"#" + name}> {name} </a>
-                        </div>
+                            <a key={name} onClick={e => this.onClick(e, name)} className="playlist-header" href={`#${name}`}> {name} </a>
                     )}
                 </div>
                 {this.state.allSongs
                 ?<div className="playlist-container">{this.showAll()}</div>
                 : null}
-                {this.state.selected !== ''
+                {this.state.showPlaylist
                 ? <div className="playlist-container">{this.playlist()}</div>
                 : null}
                 <div className="phant">
                     <div className="stick">
-                        {this.state.clicked
-                        ? <LibraryPlayer key={this.state.current} id={this.state.current} name={this.state.selected} />
-                        : null}
+                        {this.state.songPlayer
+                        ? <LibraryPlayer  key={this.state.current} id={this.state.current} name={this.state.selected} />
+                        :null}
                     </div>
                 </div>
             </div>
@@ -132,3 +132,15 @@ class Library extends React.Component {
 }
 
 export default connect(state => state, {getTracks, deleteTracks, getSongs})(Library);
+
+// {this.state.showAll && this.state.showAll !== null 
+//     ? this.props.songs.map(track => (
+//         <TrackPlayer key={track.trackId} id={track.trackId} track={track.trackName}
+//             artist={track.artistName} albumn={track.collectionName}
+//             preview={track.previewUrl} artwork={track.artworkUrl60} />
+//     ))
+//     : this.props.songs.map(song => (
+//         <LibraryPlayer key={song.trackId} id={song.trackId} name={this.state.selected}
+//             albumn={song.collectionName} artist={song.artistName} track={song.trackName}
+//             preview={song.previewUrl} artwork={song.artworkUrl60} />
+//     ))}

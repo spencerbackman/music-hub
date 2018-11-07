@@ -4,7 +4,7 @@ import AddSong from './AddSong';
 import './styles/songSearch.css';
 import {connect} from 'react-redux';
 import {getTracks} from './redux/tracks';
-import {searchSongs} from "./redux/songs";
+import {searchSongs, getSongs} from "./redux/songs";
 import {getSongById} from "./redux/song";
 import play from "./images/play-button.svg";
 import circle from "./images/circle.svg";
@@ -20,23 +20,20 @@ class Songsearch extends React.Component {
     };
 
     handleChange = e => {
-        const { name, value } = e.target;
         this.setState({
-            [name]: value
+            [e.target.name]: e.target.value
         });
-        this.props.searchSongs(this.state.term)
+        this.props.searchSongs(this.state.term);
     };
 
-    getSongs = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault();
         this.props.searchSongs(this.state.term);
-        this.setState({
-            term: ''
-        })
+        this.setState({ term: '' })
     }
 
     handleClick = (e, id) => {
-        this.props.getSongById(id);
+        e.preventDefault();
         this.setState({
             clicked: true,
             songId: id
@@ -70,7 +67,7 @@ class Songsearch extends React.Component {
     render() {
         return (
             <div className="search-page">
-                <form className="search-form" onSubmit={ this.getSongs }>
+                <form className="search-form" onSubmit={ this.handleSubmit }>
                     <input
                     type="text"
                     name="term"
@@ -97,4 +94,4 @@ class Songsearch extends React.Component {
     }
 }
 
-export default connect(state => state, {searchSongs, getSongById, getTracks})(Songsearch);
+export default connect(state => state, {searchSongs, getSongById, getTracks, getSongs})(Songsearch);

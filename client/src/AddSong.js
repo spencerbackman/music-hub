@@ -8,6 +8,7 @@ class AddSong extends React.Component {
         super();
         this.state = {
             names: [],
+            index: [],
             isHidden: false,
             playlist: '',
             newPlaylist: ''
@@ -20,10 +21,15 @@ class AddSong extends React.Component {
     componentDidUpdate() {
         this.props.tracks.map(track => {
             if(!this.state.names.includes(track.name) && track.name !== 'allSongs') {
-            this.setState({
-                names: [...this.state.names, track.name]
-            })
-        }
+                this.setState({
+                    names: [...this.state.names, track.name]
+                })
+            }
+            if(!this.state.index.includes(track.id)) {
+                this.setState({
+                    index: [...this.state.index, track.id]
+                })
+            }
         })
     }
     handleChange = e => {
@@ -31,7 +37,7 @@ class AddSong extends React.Component {
             [e.target.name]: e.target.value
         })
     };
-    handleSubmit = (e, track, artist, albumn, id) => {
+    handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
@@ -43,10 +49,10 @@ class AddSong extends React.Component {
         }
         const newTrack = {
             name: playlist,
-            trackName: track,
-            artist: artist,
-            albumn: albumn,
-            id: id
+            trackName: this.props.track,
+            artist: this.props.artist,
+            albumn: this.props.albumn,
+            id: this.props.id
         };
         this.props.addTrack(newTrack)
     };
@@ -66,7 +72,7 @@ class AddSong extends React.Component {
                     {this.state.isHidden
                         ?<form onSubmit={e => this.handleSubmit(e, this.props.track, this.props.artist, this.props.albumn, this.props.id)}>
                             <select name="playlist" id="addSongOptions" value={this.state.playlist} onChange={this.handleChange}>
-                                <option value="">My Music</option>
+                                <option value="allSongs">My Music</option>
                                 {this.state.names.map(name => 
                                     <option value={name}>{name} </option>
                                 )}

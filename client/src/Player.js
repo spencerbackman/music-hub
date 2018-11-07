@@ -31,33 +31,18 @@ class Player extends React.Component {
             let cursecs = Math.floor(audio.currentTime - curmins * 60);
             let durmins = Math.floor(audio.duration / 60);
             let dursecs = Math.floor(audio.duration - durmins * 60);
-            if (cursecs < 10) {
-                cursecs = "0" + cursecs;
-            }
-            if (dursecs < 10) {
-                dursecs = "0" + dursecs;
-            }
-            if (curmins < 10) {
-                curmins = "0" + curmins;
-            }
-            if (durmins < 10) {
-                durmins = "0" + durmins;
-            }
+            if(cursecs < 10){ cursecs = "0" + cursecs; }
+            if(dursecs < 10){ dursecs = "0" + dursecs; }
+            if(curmins < 10){ curmins = "0" + curmins; }
+            if(durmins < 10){ durmins = "0" + durmins; }
             current.innerHTML = curmins + ":" + cursecs;
             total.innerHTML = durmins + ":" + dursecs;
         }
     };
 
-    playing = () => {
-        let audio = document.getElementById("audio-player");
-        audio.addEventListener("timeupdate", () => {
-            this.updateTime();
-        }, false)
-    };
-
     play = () => {
         const audio = this.audio;
-        if(audio.paused) {
+        if(audio.paused) { 
             audio.play();
             this.setState({ isPlaying: true });
         } else {
@@ -99,7 +84,6 @@ class Player extends React.Component {
     };
 
     render() {
-        console.log(this.props)
         return(
             <div>
                 {this.playSong()}

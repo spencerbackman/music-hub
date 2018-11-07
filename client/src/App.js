@@ -15,7 +15,6 @@ class App extends React.Component{
         this.props.verify();
     }
     render () {
-        console.log(this.props);
         const {isAuthenticated, loading} = this.props;
         return (
             <div className="app-container">

@@ -6,7 +6,7 @@ const trackSchema = new Schema({
     artist: String,
     trackName: String,
     albumn: String,
-    id: String,
+    id: Number,
     user: {
         type: Schema.Types.ObjectId,
         ref: "User",

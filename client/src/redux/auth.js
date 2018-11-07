@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const initialState = {
-    tracks: [],
     user: {
         username: "",
         isAdmin: false
@@ -69,7 +68,6 @@ export function login(credentials) {
     return dispatch => {
         axios.post("/auth/login", credentials)
             .then(response => {
-                console.log(response)
                 const {token, user} = response.data;
                 localStorage.setItem("token", token);
                 localStorage.setItem("user", JSON.stringify(user));
@@ -101,7 +99,6 @@ let verifyAxios = axios.create();
 verifyAxios.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
     config.headers.Authorization = `Bearer ${token}`;
-    console.log(token);
     return config;
 });
 
@@ -109,7 +106,6 @@ export function verify() {
     return dispatch => {
         verifyAxios.get("/profile")
             .then(response => {
-                console.log(response)
                 dispatch(authenticate(response.data.user))
             }).catch(err => {
                 console.dir(err);

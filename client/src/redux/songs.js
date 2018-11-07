@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-// let config = {
-//     headers: {
-//         "Acess-Control-Allow-Origin": "https://mymusichub.herokuapp.com"
-//     }
-// }
+let config = {
+    headers: {
+        "Acess-Control-Allow-Origin": "https://mymusichub.herokuapp.com"
+    }
+}
 
 
 export function searchSongs(name) {
     return dispatch => {
-        axios.get('https://itunes.apple.com/search?term=' + name + '&limit=10')
+        axios.get('https://itunes.apple.com/search?term=' + name + '&limit=10', config)
             .then(response => {
                 dispatch({
                     type: 'SEARCH_SONGS',
@@ -23,7 +23,7 @@ export function searchSongs(name) {
 
 export function getSongs(id) {
     return dispatch => {
-        axios.get('https://itunes.apple.com/lookup?id=' + id + '&entity=song&limit=1')
+        axios.get('https://itunes.apple.com/lookup?id=' + id + '&entity=song&limit=1', config)
             .then(response => {
                 dispatch({
                     type: 'GET_SONGS',

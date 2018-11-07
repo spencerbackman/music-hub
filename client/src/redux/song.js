@@ -2,12 +2,7 @@ import axios from 'axios';
 
 export function getSongById(id) {
     return dispatch => {
-        axios.get('https://itunes.apple.com/lookup?id=' + id + '&limit=1', {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'https://mymusichub.herokuapp.com'
-        })
+        axios.get('https://itunes.apple.com/lookup?id=' + id + '&limit=1')
             .then(response => {
                 dispatch({
                     type: 'GET_SONG_BY_ID',

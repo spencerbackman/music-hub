@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 require("dotenv").config();
 const expressJwt = require("express-jwt");
-const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -10,9 +9,7 @@ const path = require("path");
 const port = process.env.PORT || 4000;
 const secret = process.env.secret || "I'm a secret";
 
-app.use(express.static(path.join(__dirname, "client", "build")))
-
-app.use(cors());
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));

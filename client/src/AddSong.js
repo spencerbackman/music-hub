@@ -72,7 +72,7 @@ class AddSong extends React.Component {
                     {this.state.isHidden
                         ?<form onSubmit={e => this.handleSubmit(e, this.props.track, this.props.artist, this.props.albumn, this.props.id)}>
                             <select name="playlist" id="addSongOptions" value={this.state.playlist} onChange={this.handleChange}>
-                                <option value="allSongs">My Music</option>
+                                <option selected value="allSongs">My Music</option>
                                 {this.state.names.map(name => 
                                     <option value={name}>{name} </option>
                                 )}

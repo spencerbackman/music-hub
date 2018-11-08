@@ -5,7 +5,7 @@ import {getSongById} from './redux/song';
 
 class Songplayer extends React.Component{
     componentDidMount() {
-        this.props.getSongById(this.props)
+        this.props.getSongById(this.props.id)
     }
     render() {
         return (

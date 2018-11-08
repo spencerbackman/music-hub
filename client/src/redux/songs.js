@@ -4,7 +4,6 @@ export function searchSongs(name) {
     return dispatch => {
         axios.get('https://itunes.apple.com/search?term=' + name + '&enity=music&limit=10', {
             method: 'get',
-            maxRedirects: 10,
             proxy: false,
             host: 'localhost:3000',
             headers: {

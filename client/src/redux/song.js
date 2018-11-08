@@ -7,7 +7,8 @@ export function getSongById(id) {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
             },
-            host: 'localhost:4000'
+            host: 'localhost:4000',
+            origin: 'https://mymusichub.herokuapp.com'
         })
             .then(response => {
                 dispatch({

@@ -11,8 +11,15 @@ const secret = process.env.secret || "I'm a secret";
 
 app.use(express.static(path.join(__dirname, "client", "build")));
 
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json())
 app.use(morgan('dev'));
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
+    next();
+})
 
 app.use('/tracks', expressJwt({secret: process.env.SECRET}));
 app.use('/profile', expressJwt({secret: process.env.SECRET}));

@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getTracks, deleteTracks} from './redux/tracks';
-import {getSongs} from './redux/songs';
 import './styles/library.css';
 import play from "./images/play-button.svg";
 import circle from "./images/circle.svg";
@@ -131,7 +130,7 @@ class Library extends React.Component {
     }
 }
 
-export default connect(state => state, {getTracks, deleteTracks, getSongs})(Library);
+export default connect(state => state, {getTracks, deleteTracks})(Library);
 
 // {this.state.showAll && this.state.showAll !== null 
 //     ? this.props.songs.map(track => (

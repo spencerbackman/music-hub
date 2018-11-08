@@ -10,13 +10,14 @@ class LibraryPlayer extends React.Component {
         super();
         this.state = {
             play: false,
-            index: []
+            index: [],
+            data: []
         }
     }
 
     componentDidMount() {
         this.props.getTracks();
-        this.props.getSongs(this.props.id)
+        this.props.getSongs(this.props.id);
     }
 
     componentDidUpdate() {
@@ -40,6 +41,7 @@ class LibraryPlayer extends React.Component {
     };
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 {this.props.songs.map(track => (

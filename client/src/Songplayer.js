@@ -5,12 +5,12 @@ import {getSongById} from './redux/song';
 
 class Songplayer extends React.Component{
     componentDidMount() {
-        this.props.getSongById(this.props.id)
+        this.props.getSongById(this.props)
     }
     render() {
         return (
             <div id="player-page">
-                {this.props.song.map(track =>
+                {this.props.song.filter(track => track.trackId === this.props.id).map(track =>
                         <Player key={track.trackId} id={track.trackId} artistname={track.artistName}
                                 trackname={track.trackName} previewurl={track.previewUrl} artworkurl={track.artworkUrl60}/>
                     )

@@ -3,10 +3,14 @@ import axios from 'axios';
 export function getSongById(id) {
     return dispatch => {
         axios.get('https://itunes.apple.com/lookup?id=' + id + '&entity=song&limit=1', {
+            method: 'get',
+            maxRedirects: 10,
+            httpAgent: new httpAgent({keepAlive: true}),
+            httpsAgent: new httpsAgent({keepAlive: true}),
+            proxy: false,
             headers: {
                 "Access-Control-Allow-Origin": "https://mymusichub.herokuapp.com",
-                "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests",
-                "Referrer-Policy": 'no-referrer'
+                "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
             },
         })
             .then(response => {

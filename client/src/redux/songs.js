@@ -6,8 +6,10 @@ export function searchSongs(name) {
             method: 'get',
             proxy: false,
             host: 'localhost:3000',
+            Accept: 'application/json',
+            Connection: "keep-alive",
             headers: {
-                "Cache-Control": "max-age=10000",
+                "Cache-Control": "no-cache",
                 "Access-Control-Allow-Origin": "https://mymusichub.herokuapp.com",
                 "Access-Control-Allow-Headers": "Upgrade-Insecure-Requests"
             }

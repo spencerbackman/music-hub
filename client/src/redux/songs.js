@@ -7,8 +7,9 @@ export function searchSongs(name) {
             proxy: false,
             host: 'localhost:3000',
             headers: {
+                "Cache-Control": "max-age=10000",
                 "Access-Control-Allow-Origin": "https://mymusichub.herokuapp.com",
-                "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
+                "Access-Control-Allow-Headers": "Upgrade-Insecure-Requests"
             }
             })
             .then(response => {

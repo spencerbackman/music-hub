@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export function searchSongs(name) {
     return dispatch => {
-        axios.get('https://itunes.apple.com/search?term=' + name + '&limit=10', {
+        axios.get('https://itunes.apple.com/search?term=' + name + '&enity=music&limit=10', {
             method: 'get',
             maxRedirects: 10,
             proxy: false,

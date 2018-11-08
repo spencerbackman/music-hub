@@ -5,7 +5,7 @@ export function searchSongs(name) {
         axios.get('https://itunes.apple.com/search?term=' + name + '&enity=music&limit=10', {
             method: 'get',
             proxy: false,
-            host: 'localhost:4000',
+            host: 'localhost:3000',
             Accept: 'application/json',
             headers: {
                 "Access-Control-Allow-Origin": "https://mymusichub.herokuapp.com",

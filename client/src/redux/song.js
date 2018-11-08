@@ -5,7 +5,8 @@ export function getSongById(id) {
         axios.get('https://itunes.apple.com/lookup?id=' + id + '&entity=song&limit=1', {
             headers: {
                 "Access-Control-Allow-Origin": "https://mymusichub.herokuapp.com",
-                "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
+                "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests",
+                "Referrer-Policy": 'no-referrer'
             },
         })
             .then(response => {

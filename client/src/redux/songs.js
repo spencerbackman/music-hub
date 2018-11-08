@@ -8,9 +8,7 @@ export function searchSongs(name) {
             host: 'localhost:4000',
             Accept: 'application/json',
             headers: {
-                "Cache-Control": "no-cache",
                 "Access-Control-Allow-Origin": "https://mymusichub.herokuapp.com",
-                "Access-Control-Allow-Headers": "Upgrade-Insecure-Requests"
             }
             })
             .then(response => {

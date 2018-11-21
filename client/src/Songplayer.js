@@ -21,9 +21,7 @@ class Songplayer extends React.Component{
             maxRedirects: 1,
             proxy: false,
             Accept: 'application/json',
-            Origin: 'https://mymusichub.herokuapp.com',
             headers: {
-                'Access-Control-Allow-Origin': 'https://mymusichub.herokuapp.com',
                 "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
             }
         }).then(response => {

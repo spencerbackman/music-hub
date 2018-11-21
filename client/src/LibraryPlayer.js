@@ -22,6 +22,7 @@ class LibraryPlayer extends React.Component {
             maxRedirects: 1,
             Accept: 'application/json',
             headers: {
+                'Access-Control-Allow-Origin': 'https://mymusichub.herokuapp.com',
                 "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
             }
         }).then(response => {
@@ -56,6 +57,7 @@ class LibraryPlayer extends React.Component {
             maxRedirects: 1,
             Accept: 'application/json',
             headers: {
+                'Access-Control-Allow-Origin': 'https://mymusichub.herokuapp.com',
                 "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
             }
         }).then(response => {

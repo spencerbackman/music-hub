@@ -1,71 +1,48 @@
 import React from 'react';
 import Songplayer from './Songplayer';
-import AddSong from './AddSong';
 import './styles/songSearch.css';
 import {connect} from 'react-redux';
-import {getTracks} from './redux/tracks';
-import {searchSongs, getSongs} from "./redux/songs";
-import {getSongById} from "./redux/song";
-import play from "./images/play-button.svg";
-import circle from "./images/circle.svg";
+import axios from 'axios';
 
 class Songsearch extends React.Component {
     constructor() {
         super();
         this.state = {
             term: '',
-            clicked: false,
-            songId: ''
+            data: []
         }
     };
-
     handleChange = e => {
         this.setState({
             [e.target.name]: e.target.value
         });
+        this.getSong()
     };
-
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.searchSongs(this.state.term);
-        this.setState({ term: '' })
-    }
-
-    handleClick = (e, id) => {
-        e.preventDefault();
+        this.getSong();
         this.setState({
-            clicked: true,
-            songId: id
+          term: ''
         })
-    };
-
-    songs = () => {
-        return (
-            this.props.songs.map(track => 
-                <div key={track.trackId} >
-                    <div className="song-container">
-                    <div id="song-display" onClick={e => this.handleClick(e, track.trackId)}>
-                        <img className="song-play-icon" src={play} alt="play-icon"/>
-                        <div className="song-info-holder">
-                            <div id="song-name">{track.trackName}</div>
-                            <div className="song-info-holder2">
-                                <div id="song-info">{track.artistName}</div>
-                                <img id="ball-icon" src={circle} alt="circle-icon"/>
-                                <div id="song-albumn">{track.collectionName}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="add-song-container">
-                        <AddSong key={track.trackId} id={track.trackId} track={track.trackName}
-                            artist={track.artistName} albumn={track.collectionName} />
-                    </div>
-                    </div>
-                </div>
-            )
-        )
-    };
-
+    }
+    getSong = () => {
+        axios.get('https://itunes.apple.com/search?term=' + this.state.term + '&limit=10', {
+            method: 'get',
+            proxy: false,
+            maxRedirects: 1,
+            Accept: 'application/json',
+            headers: {
+                'Access-Control-Allow-Origin': 'https://mymusichub.herokuapp.com',
+                "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
+            }
+        }).then(response => {
+            this.setState({
+                data: response.data.results
+            })
+        })
+    }
     render() {
+        console.log(this.state.data)
         return (
             <div className="search-page">
                 <form className="search-form" onSubmit={ this.handleSubmit }>
@@ -80,19 +57,10 @@ class Songsearch extends React.Component {
                     list="autocompleteoff"
                     />
                 </form>
-                <div className="song-search-container">
-                    {this.songs()}
-                </div>
-                <div className="phantom">
-                    <div className="sticky">
-                        {this.state.clicked
-                        ? <Songplayer key={this.state.songId} id={this.state.songId} />
-                        :null}
-                    </div>
-                </div>
+                <Songplayer  data={this.state.data}/>
             </div>
         )
     }
 }
 
-export default connect(state => state, {searchSongs, getSongById, getTracks, getSongs})(Songsearch);
+export default connect(state => state)(Songsearch);

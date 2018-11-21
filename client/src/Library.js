@@ -18,11 +18,9 @@ class Library extends React.Component {
             current: ''
         }
     }
-
     componentDidMount() {
         this.props.getTracks()
     }
-
     componentDidUpdate() {
         this.props.tracks.map(track => {
             if(!this.state.playlists.includes(track.name) && track.name !== "allSongs") {
@@ -32,7 +30,6 @@ class Library extends React.Component {
             }
         })
     }
-
     onClick = (e, name) => {
         if(name === 'allSongs') {
             this.setState({
@@ -48,11 +45,9 @@ class Library extends React.Component {
             })
         }
     }
-
     handleSubmit = (e, id) => {
         this.props.deleteTracks(id)
     };
-
     handleClick = (e, id) => {
         if(this.state.allSongs) {
             this.setState({clicked: true, current: id, showAll: true, songPlayer: true})
@@ -60,7 +55,6 @@ class Library extends React.Component {
             this.setState({clicked: true, current: id, showAll: false, songPlayer: true})
         }
     }
-
     playlist = () => {
         return this.props.tracks.filter(song => song.name === this.state.selected).map(track => (
             <div key={track._id}>
@@ -81,7 +75,6 @@ class Library extends React.Component {
             </div> 
         ))
     }
-
     showAll = () => {
         return this.props.tracks.map(track => (
             <div key={track._id}>
@@ -102,7 +95,6 @@ class Library extends React.Component {
             </div>
         ))
     }
-
     render() {
         return (
             <div className="library-page">
@@ -131,15 +123,3 @@ class Library extends React.Component {
 }
 
 export default connect(state => state, {getTracks, deleteTracks})(Library);
-
-// {this.state.showAll && this.state.showAll !== null 
-//     ? this.props.songs.map(track => (
-//         <TrackPlayer key={track.trackId} id={track.trackId} track={track.trackName}
-//             artist={track.artistName} albumn={track.collectionName}
-//             preview={track.previewUrl} artwork={track.artworkUrl60} />
-//     ))
-//     : this.props.songs.map(song => (
-//         <LibraryPlayer key={song.trackId} id={song.trackId} name={this.state.selected}
-//             albumn={song.collectionName} artist={song.artistName} track={song.trackName}
-//             preview={song.previewUrl} artwork={song.artworkUrl60} />
-//     ))}

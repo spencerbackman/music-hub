@@ -22,6 +22,7 @@ class Songplayer extends React.Component{
             proxy: false,
             Accept: 'application/json',
             headers: {
+                'Access-Control-Allow-Origin': 'http://localhost:3000',
                 "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
             }
         }).then(response => {

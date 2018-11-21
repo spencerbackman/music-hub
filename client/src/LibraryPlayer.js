@@ -57,7 +57,9 @@ class LibraryPlayer extends React.Component {
             proxy: false,
             maxRedirects: 1,
             Accept: 'application/json',
+            Origin: 'https://mymusichub.herokuapp.com',
             headers: {
+                'Access-Control-Allow-Origin': 'https://mymusichub.herokuapp.com',
                 "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
             }
         }).then(response => {

@@ -26,12 +26,14 @@ class Songsearch extends React.Component {
         })
     }
     getSong = () => {
-        axios.get('https://itunes.apple.com/search?term=' + this.state.term + '&limit=10', {
+        axios.get('https://itunes.apple.com/lookup?term=' + this.state.term + '&limit=10', {
             method: 'get',
             proxy: false,
             maxRedirects: 1,
             Accept: 'application/json',
+            Origin: 'https://mymusichub.herokuapp.com',
             headers: {
+                'Access-Control-Allow-Origin': 'https://mymusichub.herokuapp.com',
                 "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
             }
         }).then(response => {

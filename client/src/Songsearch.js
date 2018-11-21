@@ -26,7 +26,7 @@ class Songsearch extends React.Component {
         })
     }
     getSong = () => {
-        axios.get('https://itunes.apple.com/lookup?term=' + this.state.term + '&limit=10', {
+        axios.get('https://itunes.apple.com/search?term=' + this.state.term + '&limit=10', {
             method: 'get',
             proxy: false,
             maxRedirects: 1,

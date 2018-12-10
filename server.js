@@ -15,15 +15,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 app.use(morgan('dev'));
 
-// var allowCrossDomain = function(req, res, next) {
-//     res.header('Access-Control-Allow-Origin', 'https://mymusichub.herokuapp.com', 'localhost:4000');
-//     res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE');
-//     res.header('Access-Control-Allow-Credentials', true);
-//     next();
-// }
-
-// app.use(allowCrossDomain)
-
 app.use('/tracks', expressJwt({secret: process.env.SECRET}));
 app.use('/profile', expressJwt({secret: process.env.SECRET}));
 

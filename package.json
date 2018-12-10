@@ -28,6 +28,5 @@
   },
   "engines": {
     "node": "8.11.3"
-  },
-  "homepage": "https://mymusichub.herokuapp.com"
+  }
 }

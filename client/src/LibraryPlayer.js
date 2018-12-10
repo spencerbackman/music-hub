@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getTracks} from './redux/tracks';
+import {getSongs} from './redux/songs';
 import './styles/libraryPlayer.css';
 import TrackPlayer from './TrackPlayer';
-import axios from 'axios';
 
 class LibraryPlayer extends React.Component {
     constructor() {
@@ -16,20 +16,7 @@ class LibraryPlayer extends React.Component {
     }
     componentDidMount() {
         this.props.getTracks();
-        axios.get('https://itunes.apple.com/lookup?id=' + this.props.id + '&limit=1', {
-            method: 'get',
-            proxy: false,
-            maxRedirects: 1,
-            Accept: 'application/json',
-            headers: {
-                'Access-Control-Allow-Origin': 'http://localhost:3000',
-                "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
-            }
-        }).then(response => {
-            this.setState({
-                data: response.data.results
-            })
-        })
+        this.props.getSongs(this.props.id);
     }
     componentDidUpdate() {
         if(this.props.name !== 'allSongs') {
@@ -50,34 +37,18 @@ class LibraryPlayer extends React.Component {
             })
         }
     };
-    getSong = (e, id) => {
-        axios.get('https://itunes.apple.com/lookup?id=' + id + '&limit=1', {
-            method: 'get',
-            proxy: false,
-            maxRedirects: 1,
-            Accept: 'application/json',
-            headers: {
-                'Access-Control-Allow-Origin': 'http://localhost:3000',
-                "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
-            }
-        }).then(response => {
-            this.setState({
-                data: response.data.results
-            })
-        })
-    }
     render() {
         return (
             <div>
-                {this.state.data.map(track => (
+                {this.props.songs.map(track => (
                     <TrackPlayer key={track.trackId} id={track.trackId} name={this.props.name}
                     track={track.trackName} artist={track.artistName} albumn={track.collectionName}
                     preview={track.previewUrl} artwork={track.artworkUrl60} index={this.state.index}
-                    getSong={this.getSong} />
+                    />
                 ))}
             </div>
         )
     }
 }
 
-export default connect(state => state, {getTracks})(LibraryPlayer);
+export default connect(state => state, {getTracks, getSongs})(LibraryPlayer);

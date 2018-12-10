@@ -2,7 +2,8 @@ import React from 'react';
 import Songplayer from './Songplayer';
 import './styles/songSearch.css';
 import {connect} from 'react-redux';
-import axios from 'axios';
+import {getSongById} from './redux/song';
+import {searchSongs, getSongs} from './redux/songs';
 
 class Songsearch extends React.Component {
     constructor() {
@@ -16,33 +17,17 @@ class Songsearch extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         });
-        this.getSong()
+        this.props.searchSongs(this.state.term)
     };
     handleSubmit = (e) => {
         e.preventDefault();
-        this.getSong();
+        this.props.searchSongs(this.state.term)
         this.setState({
           term: ''
         })
     }
-    getSong = () => {
-        axios.get('https://itunes.apple.com/search?term=' + this.state.term + '&limit=10', {
-            method: 'get',
-            proxy: false,
-            maxRedirects: 1,
-            Accept: 'application/json',
-            headers: {
-                'Access-Control-Allow-Origin': 'http://localhost:3000',
-                "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
-            }
-        }).then(response => {
-            this.setState({
-                data: response.data.results
-            })
-        })
-    }
+
     render() {
-        console.log(this.state.data)
         return (
             <div className="search-page">
                 <form className="search-form" onSubmit={ this.handleSubmit }>
@@ -57,10 +42,10 @@ class Songsearch extends React.Component {
                     list="autocompleteoff"
                     />
                 </form>
-                <Songplayer  data={this.state.data}/>
+                <Songplayer data={this.props.songs}/>
             </div>
         )
     }
 }
 
-export default connect(state => state)(Songsearch);
+export default connect(state => state, {getSongById, searchSongs, getSongs})(Songsearch);

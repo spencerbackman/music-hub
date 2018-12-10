@@ -3,34 +3,20 @@ import Player from './Player'
 import {connect} from 'react-redux';
 import play from "./images/play-button.svg";
 import circle from "./images/circle.svg";
-import axios from 'axios';
 import AddSong from './AddSong';
+import {getSongById} from './redux/song';
 
 class Songplayer extends React.Component{
     constructor() {
         super();
         this.state = {
-          clicked: false,
-          data: []
+          clicked: false
        }
     };
     handleClick = (e, id) => {
         e.preventDefault();
-        axios.get('https://itunes.apple.com/lookup?id=' + id + '&limit=1', {
-            method: 'get',
-            maxRedirects: 1,
-            proxy: false,
-            Accept: 'application/json',
-            headers: {
-                'Access-Control-Allow-Origin': 'http://localhost:3000',
-                "Access-Control-Allow-Headers": "X-Custom-Header, Upgrade-Insecure-Requests"
-            }
-        }).then(response => {
-            this.setState({
-                data: response.data.results,
-                clicked: true
-            })
-        })
+        this.props.getSongById(id);
+        this.setState({clicked: true})
     };
     songs = () => {
         return (
@@ -58,7 +44,6 @@ class Songplayer extends React.Component{
         )
     };
     render() {
-        console.log(this.state.data)
         return (
             <div id="player-page">
                 <div className="song-search-container">
@@ -67,7 +52,7 @@ class Songplayer extends React.Component{
                 <div className="phantom">
                     <div className="sticky">
                         {this.state.clicked
-                        ? this.state.data.map(track => (
+                        ? this.props.song.map(track => (
                             <Player key={track.trackId} id={track.trackId} track={track.trackName}
                             artist={track.artistName} artwork={track.artworkUrl60} preview={track.previewUrl}
                             albumn={track.collectionName}/>
@@ -80,4 +65,4 @@ class Songplayer extends React.Component{
     }
 }
 
-export default connect(state => state)(Songplayer);
+export default connect(state => state, {getSongById})(Songplayer);

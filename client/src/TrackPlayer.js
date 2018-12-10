@@ -3,6 +3,8 @@ import play from "./images/play-button.svg";
 import pause from './images/pause-button.svg';
 import prev from './images/left-arrow.svg';
 import next from './images/right-arrow.svg';
+import {getSongs} from './redux/songs';
+import {connect} from 'react-redux';
 import './styles/libraryPlayer.css';
 
 class TrackPlayer extends React.Component {
@@ -63,7 +65,7 @@ class TrackPlayer extends React.Component {
             if(id === index[i]) {
                 this.audio.pause();
                 this.setState({ play: false });
-                this.props.getSong(e, newId)
+                this.props.getSongs(newId)
             }
         }
     }
@@ -76,7 +78,7 @@ class TrackPlayer extends React.Component {
             if(id === index[i]) {
                 this.audio.pause();
                 this.setState({ play: false });
-                this.props.getSong(e, newId)
+                this.props.getSongs(newId)
             }
         }
     }
@@ -122,4 +124,4 @@ class TrackPlayer extends React.Component {
     }
 }
 
-export default TrackPlayer;
+export default connect(state => state, {getSongs})(TrackPlayer);

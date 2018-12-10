@@ -2,7 +2,7 @@
 node_modules
 .env
 *.orig
-.idea/
-.vscode/
+/.idea
+/.vscode
 .log
 .lognode_modules
